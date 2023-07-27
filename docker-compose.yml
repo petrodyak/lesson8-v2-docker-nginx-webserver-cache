@@ -1,0 +1,19 @@
+#  docker-compose. yaml file uses the docker-compose up command
+# docker-compose. yaml file is used to run images
+# docker-compose is used to describe how to run Docker images as containers.
+
+version: '3.4'
+services:
+
+  nginx:
+    image: nginx
+    container_name: website
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "80:80" # !!! THIS WORK does not modify it 
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      # - ./data/images:/usr/share/nginx/html/images # this commant will copy from data/images into  /usr/share/nginx/html/images
+      # - ./data/images:/data/images # this commant will copy from data/images into  /data/images. !!! THIS WORK does not modify it 
+      - ./data/www:/etc/nginx/html # !!! THIS WORK does not modify it 
